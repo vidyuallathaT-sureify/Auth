@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <h1>SAML</h1>
+  <button id="fetchData">Login</button>
+
+  <script>
+    document.getElementById('fetchData').addEventListener('click', () => {
+        window.location.href = 'http://localhost:9000/login'
+    });
+  </script>
+</body>
+</html>

@@ -13,12 +13,20 @@ const oktaAuth = new OktaAuth({
 function App() {
   const LoginC = () => <LoginCallback />;
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const restoreOriginalUri = (_oktaAuth: any, _originalUri: any) => {};
+  const restoreOriginalUri = (_oktaAuth: any, _originalUri: any) => { };
+  const onLogin = () => {
+    fetch('http://localhost:9000/login',)
+  }
+  const HomeComponent = () => {
+    return <>
+      <button onClick={onLogin}>Login</button>
+    </>
+  }
   return (
     <>
       <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
         <Routes>
-          <Route path="/" element={<>Home</>} />
+          <Route path="/" element={<HomeComponent />} />
           <Route path="/login/callback" element={LoginC()} />
         </Routes>
       </Security>
