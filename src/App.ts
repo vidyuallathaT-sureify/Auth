@@ -12,7 +12,7 @@ app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 
 app.use(cors({
-    origin: 'http://localhost:9000', // Replace with your app's URL
+    origin: 'http://localhost:9000',
     methods: ['GET', 'POST', 'OPTIONS'],
     credentials: true
 }))
@@ -20,15 +20,15 @@ app.use(cors({
 // Configure session middleware
 app.use(
     session({
-        secret: "your-secure-session-secret", // Use a strong, secure secret
-        resave: false, // Avoid resaving session if unmodified
-        saveUninitialized: false, // Do not save empty sessions
-        cookie: {secure: false}, // Use true if behind HTTPS
+        secret: "your-secure-session-secret",
+        resave: false,
+        saveUninitialized: false,
+        cookie: {secure: false},
     }),
 );
 
 // app.use(bodyParser.json()); // support json encoded bodies
-app.use(express.urlencoded({extended: true})); // support encoded bodies
+app.use(express.urlencoded({extended: true}));
 
 
 app.use(passport.initialize());
@@ -99,7 +99,6 @@ app.post(
 );
 
 
-// Start the server
 app.listen(9000, () => {
     console.log("Server is running on http://localhost:9000");
 });
