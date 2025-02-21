@@ -7,6 +7,7 @@ const App = () => {
     useEffect(() => {
         getUser().then((user) => {
             if (user) setUser(user);
+            console.log(user);
         });
     }, []);
 

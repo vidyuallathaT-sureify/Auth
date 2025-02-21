@@ -1,15 +1,19 @@
-import { UserManager, WebStorageStateStore } from "oidc-client-ts";
+import {UserManager, UserManagerSettings, WebStorageStateStore} from "oidc-client-ts";
 
-const oidcConfig = {
-    authority: "https://dev-54568768.okta.com/oauth2/default",
-    client_id: "0oanh8xujzYWkeTBC5d7",
-    // client_secret: '5g5fnPEHJpSP7Cfm6HNpL7bv17Kcxmct35jUfoQGenJI61_4C1_kai4fglmewwBb',
-    redirect_uri: "http://localhost:5173/callback",
-    post_logout_redirect_uri: "http://localhost:5173/",
-    response_type: "code", // Authorization Code Flow
+const oidcConfig:UserManagerSettings = {
+    authority: import.meta.env.VITE_AUTH_URL,
+    client_id: import.meta.env.VITE_CLIENT_ID,
+    redirect_uri: import.meta.env.VITE_REDIRECT_URI,
+    post_logout_redirect_uri: import.meta.env.VITE_LOGOUT_REDIRECT_URI,
+    response_type: "code",
     scope: "openid profile email",
     userStore: new WebStorageStateStore({ store: window.localStorage }),
 };
+
+const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
+if (clientSecret) {
+    oidcConfig.client_secret = clientSecret;
+}
 
 export const userManager = new UserManager(oidcConfig);
 
